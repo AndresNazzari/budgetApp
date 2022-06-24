@@ -24,11 +24,13 @@ app.use(express.urlencoded({ extended: true }));
 /*============================[Database]==========================*/
 await createDatabase();
 await createTables();
+
 /*============================[Routes]============================*/
 app.use('/api/user', new UserRoute());
 app.use('/api/category', new CategoryRoute());
 app.use('/api/income', new IncomeRoute());
 app.use('/api/expense', new ExpenseRoute());
+
 /*============================[Server]============================*/
 const PORT = process.env.PORT || 8080;
 
