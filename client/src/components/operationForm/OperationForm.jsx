@@ -62,10 +62,10 @@ const OperationForm = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if (Object.values(formData).some((x) => x === '' || x === null || x == 0)) {
+        if (Object.values(formData).some((x) => x === '' || x === null || x === 0)) {
             dispatch(setAlertAction(`No empty fields allowed`, 'danger'));
             return;
-        } else if (operation == '') {
+        } else if (operation === '') {
             dispatch(setAlertAction(`Select Income or Expense`, 'danger'));
             return;
         }
@@ -112,7 +112,7 @@ const OperationForm = () => {
     const DropdownIndicator = (props) => {
         return (
             <components.DropdownIndicator {...props}>
-                <img src={SearchIcon} />
+                <img src={SearchIcon} alt='search' />
             </components.DropdownIndicator>
         );
     };

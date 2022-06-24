@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/user.action';
-import Alert from '../../components/Alert';
+import Alert from '../../components/alert/Alert';
 import styles from './style/Login.module.scss';
 import logoLogin from './assets/logo-login.png';
 

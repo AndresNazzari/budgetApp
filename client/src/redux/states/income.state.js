@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FetchState } from '../../constants/fetchState';
-import { current } from '@reduxjs/toolkit';
 export const initialState = {
     incomes: [],
     fetchState: FetchState.NOT_FETCHED,

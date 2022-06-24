@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FetchState } from '../../constants/fetchState';
 import Dashboard from '../../components/dashboard/Dashboard';
 import Spinner from '../../components/spinner/Spinner';
@@ -8,7 +8,6 @@ import OperationList from '../../components/operationList/OperationList.jsx';
 import Alert from '../../components/alert/Alert';
 
 const Operations = () => {
-    const dispatch = useDispatch();
     const fetchingStateUser = useSelector((store) => store.userReducer.fetchState);
     const fetchingStateIncomes = useSelector((store) => store.incomeReducer.fetchState);
     const fetchingStateExpenses = useSelector((store) => store.expenseReducer.fetchState);
@@ -28,7 +27,7 @@ const Operations = () => {
             ) : (
                 <>
                     <Alert />
-                    <OperationList list={op == 'incomes' ? incomes : expenses} />
+                    <OperationList list={op === 'incomes' ? incomes : expenses} />
                 </>
             )}
         </Dashboard>

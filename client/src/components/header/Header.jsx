@@ -25,10 +25,10 @@ const Header = () => {
 
     const setTitle = () => {
         return (
-            (location.pathname == '/home' && `Welcome, ${name}!`) ||
-            (location.pathname == '/operations/incomes' && 'Incomes') ||
-            (location.pathname == '/operations/expenses' && 'Expenses') ||
-            (location.pathname == '/operations' && 'Operations')
+            (location.pathname === '/home' && `Welcome, ${name}!`) ||
+            (location.pathname === '/operations/incomes' && 'Incomes') ||
+            (location.pathname === '/operations/expenses' && 'Expenses') ||
+            (location.pathname === '/operations' && 'Operations')
         );
     };
 

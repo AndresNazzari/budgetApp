@@ -1,11 +1,5 @@
 import axios from 'axios';
-import {
-    requestCategories,
-    requestSuccess,
-    requestFailed,
-    createCategory,
-    removeCategory,
-} from '../states/category.state';
+import { requestCategories, requestSuccess, requestFailed } from '../states/category.state';
 import { Endpoints } from '../../constants/endpoints';
 import { setAlertAction } from '../actions/alert.action';
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../redux/actions/user.action';
-import Alert from '../layout/alert/Alert';
+import Alert from '../../components/alert/Alert';
 import styles from './style/Signup.module.scss';
 import logoSignup from './assets/logo-signup.png';
 import { setAlertAction } from '../../redux/actions/alert.action';

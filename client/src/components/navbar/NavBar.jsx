@@ -22,7 +22,7 @@ const Navbar = () => {
                     <Link
                         to='/home'
                         className={
-                            location.pathname == '/home'
+                            location.pathname === '/home'
                                 ? `${styles.navLink} ${styles.navLinkOn}`
                                 : `${styles.navLink}`
                         }>
@@ -32,7 +32,7 @@ const Navbar = () => {
                     <Link
                         to='/operations'
                         className={
-                            location.pathname == '/operations'
+                            location.pathname === '/operations'
                                 ? `${styles.navLink} ${styles.navLinkOn}`
                                 : `${styles.navLink}`
                         }>
@@ -42,7 +42,7 @@ const Navbar = () => {
                     <Link
                         to='/operations/incomes'
                         className={
-                            location.pathname == '/operations/incomes'
+                            location.pathname === '/operations/incomes'
                                 ? `${styles.navLink} ${styles.navLinkOn}`
                                 : `${styles.navLink}`
                         }>
@@ -52,7 +52,7 @@ const Navbar = () => {
                     <Link
                         to='/operations/expenses'
                         className={
-                            location.pathname == '/operations/expenses'
+                            location.pathname === '/operations/expenses'
                                 ? `${styles.navLink} ${styles.navLinkOn}`
                                 : `${styles.navLink}`
                         }>
