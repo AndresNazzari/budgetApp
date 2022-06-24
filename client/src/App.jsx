@@ -25,7 +25,9 @@ const App = () => {
                 <Routes>
                     <Route exact path='/' element={<Login />} />
                     <Route exact path='/signup' element={<Signup />} />
-
+                    <Route exact path='/home' element={<PrivateRoute />}>
+                        <Route exact path='/home' element={<Home />} />
+                    </Route>
                     <Route path='*' element={<Login />} />
                 </Routes>
             </BrowserRouter>
