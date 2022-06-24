@@ -1,0 +1,94 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    .paginator {
+        display: flex;
+        width: 90%;
+        align-items: center;
+        justify-content: flex-end;
+
+        .paginatorData {
+            font-family: 'Rubik';
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .prevarrow {
+            margin-left: 13.13px;
+            margin-right: 18.96px;
+            margin-bottom: 0.5px;
+            cursor: pointer;
+        }
+
+        .nextarrow {
+            margin-bottom: 0.5px;
+            cursor: pointer;
+        }
+
+        .prevarrowdis {
+            margin-left: 13.13px;
+            margin-right: 18.96px;
+            margin-bottom: 0.5px;
+            cursor: not-allowed;
+        }
+
+        .nextarrowdis {
+            margin-bottom: 0.5px;
+            cursor: not-allowed;
+        }
+    }
+
+    .noPaginator {
+        height: 0px;
+        visibility: hidden;
+    }
+    .table {
+        width: 90%;
+        border-collapse: separate;
+        border: 1px solid #dadeeb;
+        border-radius: 8px;
+        border-spacing: 0;
+
+        .infoHeader {
+            //width: 20%;
+            height: 48px;
+            padding-left: 16px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            font-weight: bold;
+            font-size: 14px;
+            font-style: normal;
+            line-height: 16px;
+            color: #0ba4a0;
+            text-align: left;
+        }
+        tbody tr:hover {
+            background-color: hsla(178, 87%, 34%, 0.193);
+        }
+        .info {
+            color: #2e384d;
+            border-top: 1px solid #dadeeb;
+        }
+        .eraseTd {
+            border-top: 1px solid #dadeeb;
+        }
+    }
+}
+
+.iconDelete {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.iconEdit {
+    width: 20px;
+    cursor: pointer;
+}

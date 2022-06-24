@@ -1,10 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FetchState } from '../../constants/fetchState';
-import Dashboard from '../../components/layout/dashboard/Dashboard';
-import Spinner from '../../components/layout/spinner/Spinner';
+import Dashboard from '../../components/dashboard/Dashboard';
+import Spinner from '../../components/spinner/Spinner';
 import OperationList from '../../components/operationList/OperationList.jsx';
-import { useParams } from 'react-router-dom';
+import Alert from '../../components/alert/Alert';
 
 const Operations = () => {
     const dispatch = useDispatch();
@@ -25,7 +26,10 @@ const Operations = () => {
             fetchingStateCategories !== FetchState.FETCHED ? (
                 <Spinner />
             ) : (
-                <OperationList list={op == 'incomes' ? incomes : expenses} />
+                <>
+                    <Alert />
+                    <OperationList list={op == 'incomes' ? incomes : expenses} />
+                </>
             )}
         </Dashboard>
     );
