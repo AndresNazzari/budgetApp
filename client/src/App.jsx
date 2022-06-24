@@ -6,8 +6,8 @@ import setAuthToken from './util/setAuthToken';
 import { loadUserAction } from './redux/actions/user.action';
 import { setToken } from './redux/states/user.state';
 
-import Login from './components/login/Login';
-import Signup from './components/signup/Signup';
+import Login from './views/login/Login';
+import Signup from './views/signup/Signup';
 
 if (localStorage.userToken) {
     setAuthToken(localStorage.userToken);
