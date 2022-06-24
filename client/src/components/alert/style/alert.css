@@ -1,0 +1,43 @@
+.alerts-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    margin-right: 2rem;
+}
+.alert {
+    padding: 0.8rem;
+    margin: 1rem 0;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+.alert-primary {
+    background: #17a2b8;
+    color: #fff;
+}
+.alert-light {
+    background: #f4f4f4;
+    color: #333;
+}
+
+.alert-dark {
+    background: #343a40;
+    color: #fff;
+}
+
+.alert-danger {
+    background: #dc3545;
+    color: #fff;
+}
+
+.alert-success {
+    background: #28a745;
+    color: #fff;
+}
+
+.alert-white {
+    background: #fff;
+    color: #333;
+    border: #ccc solid 1px;
+}

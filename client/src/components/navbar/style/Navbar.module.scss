@@ -1,0 +1,71 @@
+.navBar {
+    width: 0px;
+    min-width: 0px;
+    border: none;
+
+    @media screen and (min-width: 768px) {
+        min-width: 234px;
+        border: 1px solid rgba(218, 222, 235, 0.5);
+        min-height: 100vh;
+    }
+}
+
+.navLogo {
+    margin: 1rem auto;
+    display: block;
+    max-width: 125px;
+    width: 100%;
+}
+
+.navLinks {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    color: rgb(46, 56, 77);
+}
+
+.navIcon {
+    width: 21px;
+    height: auto;
+}
+.navIcon path {
+    fill: rgba(46, 56, 77, 1);
+}
+
+.navLink {
+    display: flex;
+    font-size: 1rem;
+    padding: 1rem 0 1rem 2rem;
+    line-height: 24px;
+    font-size: 1.25rem;
+}
+
+.navLink:hover path {
+    fill: rgba(11, 164, 160, 1);
+}
+
+.navLink:hover {
+    color: rgba(11, 164, 160, 1);
+    background-color: rgba(30, 197, 187, 0.1);
+}
+
+.navLink:hover span {
+    color: rgba(11, 164, 160, 1);
+}
+.navLink span {
+    margin-left: 1rem;
+}
+
+.navLinkOn {
+    color: rgba(11, 164, 160, 1);
+    background-color: rgba(30, 197, 187, 0.1);
+    border-left: 3px solid rgba(11, 164, 160, 1);
+}
+.navLinkOn path {
+    fill: rgba(11, 164, 160, 1);
+}
+.navLinkOn span {
+    color: rgba(11, 164, 160, 1);
+}
