@@ -1,0 +1,19 @@
+{
+  "name": "budgetapp_client",
+  "version": "0.1.0",
+  "description": "CHALLENGE FULL STACK - JavaScript 🚀 for Alkemy, frontend side.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresNazzari/budgetApp.git"
+  },
+  "author": "Andres J. Nazzari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndresNazzari/budgetApp/issues"
+  },
+  "homepage": "https://github.com/AndresNazzari/budgetApp#readme"
+}
