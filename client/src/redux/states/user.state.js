@@ -17,9 +17,29 @@ export const userSlice = createSlice({
     initialState: initialState,
     reducers: {
         clearLogin: (state, action) => {},
-        requestLogin: (state, action) => {},
-        requestLoginSuccess: (state, action) => {},
-        requestLoginFailed: (state, action) => {},
+        requestLogin: (state, action) => ({
+            ...state,
+            fetchState: FetchState.FETCHING,
+        }),
+        requestLoginSuccess: (state, action) => {
+            localStorage.setItem('userToken', action.payload.token);
+            return {
+                ...state,
+                userToken: action.payload.token,
+                isAuthenticated: true,
+                fetchState: FetchState.FETCHED,
+            };
+        },
+        requestLoginFailed: (state, action) => {
+            localStorage.removeItem('userToken');
+            return {
+                ...state,
+                isAuthenticated: false,
+                userToken: null,
+                error: { ...state.error, ...action.payload },
+                fetchState: FetchState.FETCHED,
+            };
+        },
         requestLoadSuccess(state, action) {},
         setToken: (state, action) => {},
     },
