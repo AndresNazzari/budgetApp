@@ -19,9 +19,9 @@ export const userSlice = createSlice({
         clearLogin: (state, action) => {},
         requestLogin: (state, action) => {},
         requestLoginSuccess: (state, action) => {},
+        requestLoginFailed: (state, action) => {},
         requestLoadSuccess(state, action) {},
         setToken: (state, action) => {},
-        requestLoginFailed: (state, action) => {},
     },
 });
 
@@ -29,9 +29,9 @@ export const {
     clearLogin,
     requestLogin,
     requestLoginSuccess,
+    requestLoginFailed,
     requestLoadSuccess,
     setToken,
-    requestLoginFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;
