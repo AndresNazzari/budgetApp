@@ -5,6 +5,8 @@ import { createTables } from './config/createTables.js';
 import { createDatabase } from './config/createDatabase.js';
 import { UserRoute } from './routes/api/user.route.js';
 import { CategoryRoute } from './routes/api/category.route.js';
+import { IncomeRoute } from './routes/api/income.route.js';
+
 /*============================[Config]==========================*/
 dotenv.config({ path: `./.env` });
 const app = express();
@@ -24,6 +26,7 @@ await createTables();
 /*============================[Routes]============================*/
 app.use('/api/user', new UserRoute());
 app.use('/api/category', new CategoryRoute());
+app.use('/api/income', new IncomeRoute());
 /*============================[Server]============================*/
 const PORT = process.env.PORT || 8080;
 
