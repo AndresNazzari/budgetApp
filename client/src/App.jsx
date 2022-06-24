@@ -28,6 +28,12 @@ const App = () => {
                     <Route exact path='/home' element={<PrivateRoute />}>
                         <Route exact path='/home' element={<Home />} />
                     </Route>
+                    <Route exact path='/operations' element={<PrivateRoute />}>
+                        <Route exact path='/operations' element={<NewOperations />} />
+                    </Route>
+                    <Route exact path='/operations/:op' element={<PrivateRoute />}>
+                        <Route exact path='/operations/:op' element={<Operations />} />
+                    </Route>
                     <Route path='*' element={<Login />} />
                 </Routes>
             </BrowserRouter>
