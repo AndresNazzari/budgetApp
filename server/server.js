@@ -1,7 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-
+import { createTables } from './config/createTables.js';
+import { createDatabase } from './config/createDatabase.js';
+import { UserRoute } from './routes/api/user.route.js';
 /*============================[Config]==========================*/
 dotenv.config({ path: `./.env` });
 const app = express();
@@ -19,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 await createDatabase();
 await createTables();
 /*============================[Routes]============================*/
-
+app.use('/api/user', new UserRoute());
 /*============================[Server]============================*/
 const PORT = process.env.PORT || 8080;
 
