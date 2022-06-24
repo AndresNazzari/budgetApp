@@ -1,0 +1,115 @@
+.header {
+    background-color: rgba(46, 56, 77, 1);
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+        color: white;
+        margin-left: 2rem;
+        font-size: 2rem;
+    }
+}
+
+.headerAvatarContainer {
+    position: relative;
+}
+
+.headerAvatar {
+    margin: 2rem 2rem 2rem 0;
+    border-radius: 50%;
+    width: 48px;
+    cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+        margin: 2rem 2rem 2rem 0;
+    }
+
+    @media screen and (min-width: 1024px) {
+        margin: 2rem 6rem 2rem 0;
+    }
+}
+
+.headerAvatar:hover {
+    opacity: 0.9;
+    outline: 1px solid rgb(87, 105, 146);
+}
+
+.modalProfile {
+    visibility: hidden;
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    border: 2px solid #dadeeb;
+    filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.3));
+    background-color: #f8fafc;
+    display: flex;
+    border-radius: 8px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 1.25rem;
+
+    @media screen and (min-width: 768px) {
+        position: absolute;
+        align-items: flex-start;
+        top: 80%;
+        left: -200%;
+        width: 216px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        top: 80%;
+        left: -80%;
+        width: 216px;
+    }
+    span {
+        font-size: 2rem;
+        padding-left: 1rem;
+        cursor: pointer;
+
+        @media screen and (min-width: 768px) {
+            font-size: 14px;
+        }
+    }
+
+    div {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        @media screen and (min-width: 768px) {
+            justify-content: flex-start;
+        }
+    }
+    div:hover {
+        background-color: rgba(0, 0, 0, 0.197);
+        border-radius: 10px;
+    }
+}
+.modalProfile_visible {
+    visibility: visible;
+    z-index: 101;
+}
+
+.modalIcon {
+    width: 24px;
+    height: auto;
+    @media screen and (min-width: 768px) {
+        width: 12px;
+    }
+    path {
+        fill: rgba(46, 56, 77, 1);
+    }
+}
+
+/*Div para que cuando este el modal abierto y se haga click en cualquier lado de la pantalla, este se cierre*/
+#modalProfileContainer {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
