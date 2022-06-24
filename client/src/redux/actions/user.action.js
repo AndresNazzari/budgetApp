@@ -53,4 +53,22 @@ export const logout = () => async (dispatch, getState) => {
 
 export const signup =
     ({ name, email, password }) =>
-    async (dispatch, getState) => {};
+    async (dispatch, getState) => {
+        dispatch(requestLogin());
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+            const body = JSON.stringify({ name, email, password });
+            const res = await axios.post(Endpoints.POST_SIGNUP_USER, body, config);
+            dispatch(requestLoginSuccess(res.data));
+        } catch (error) {
+            const errors = error.response.data.errors;
+            if (errors) {
+                errors.forEach((error) => dispatch(setAlertAction(error.msg, 'danger')));
+            }
+            dispatch(requestLoginFailed(errors));
+        }
+    };
