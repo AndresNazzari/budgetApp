@@ -13,7 +13,6 @@ const Home = () => {
     const fetchingStateUser = useSelector((store) => store.userReducer.fetchState);
     const fetchingStateIncomes = useSelector((store) => store.incomeReducer.fetchState);
     const fetchingStateExpenses = useSelector((store) => store.expenseReducer.fetchState);
-    const fetchingStateCategories = useSelector((store) => store.categoriesReducer.fetchState);
 
     const user_id = useSelector((store) => store.userReducer.user_id);
     const incomes = useSelector((store) => store.incomeReducer.incomes);
@@ -41,7 +40,7 @@ const Home = () => {
     allOpp.sort((a, b) => {
         let c = new Date(a.date);
         let d = new Date(b.date);
-        return c - d;
+        return d - c;
     });
     const opp = allOpp.slice(0, 10);
 
@@ -49,8 +48,7 @@ const Home = () => {
         <Dashboard>
             {fetchingStateUser !== FetchState.FETCHED ||
             fetchingStateIncomes !== FetchState.FETCHED ||
-            fetchingStateExpenses !== FetchState.FETCHED ||
-            fetchingStateCategories !== FetchState.FETCHED ? (
+            fetchingStateExpenses !== FetchState.FETCHED ? (
                 <Spinner />
             ) : (
                 <>

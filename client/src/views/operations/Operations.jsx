@@ -11,7 +11,6 @@ const Operations = () => {
     const fetchingStateUser = useSelector((store) => store.userReducer.fetchState);
     const fetchingStateIncomes = useSelector((store) => store.incomeReducer.fetchState);
     const fetchingStateExpenses = useSelector((store) => store.expenseReducer.fetchState);
-    const fetchingStateCategories = useSelector((store) => store.categoriesReducer.fetchState);
 
     const incomes = useSelector((store) => store.incomeReducer.incomes);
     const expenses = useSelector((store) => store.expenseReducer.expenses);
@@ -21,8 +20,7 @@ const Operations = () => {
         <Dashboard>
             {fetchingStateUser !== FetchState.FETCHED ||
             fetchingStateIncomes !== FetchState.FETCHED ||
-            fetchingStateExpenses !== FetchState.FETCHED ||
-            fetchingStateCategories !== FetchState.FETCHED ? (
+            fetchingStateExpenses !== FetchState.FETCHED ? (
                 <Spinner />
             ) : (
                 <>

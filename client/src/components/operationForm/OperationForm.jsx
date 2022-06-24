@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import styles from './style/OperationForm.module.scss';
 import { setAlertAction } from '../../redux/actions/alert.action';
-import { loadCategoriesAction } from '../../redux/actions/categories.action';
 import { addExpenseAction, editExpenseAction } from '../../redux/actions/expenses.actions';
 import { addIncomeAction, editIncomeAction } from '../../redux/actions/incomes.actions';
 import SearchIcon from './assets/searchIcon.svg';
@@ -32,10 +31,6 @@ const OperationForm = () => {
         op && Number(op.amount) > 0 && setOperation('income');
         op && Number(op.amount) < 0 && setOperation('expense');
     }, [op]);
-
-    useEffect(() => {
-        dispatch(loadCategoriesAction());
-    }, [dispatch]);
 
     const btnClickHandler = (e) => {
         setOperation(e.target.value);

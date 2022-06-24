@@ -18,7 +18,6 @@
     "bugs": {
         "url": "https://github.com/AndresNazzari/budgetApp/issues"
     },
-    "homepage": "https://github.com/AndresNazzari/budgetApp#readme",
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.2",
         "@testing-library/jest-dom": "^5.16.4",
