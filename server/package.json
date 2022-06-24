@@ -1,33 +1,35 @@
 {
-  "name": "budgetapp_server",
-  "version": "0.1.0",
-  "description": "CHALLENGE FULL STACK - JavaScript 🚀 for Alkemy, backend side.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AndresNazzari/budgetApp.git"
-  },
-  "author": "Andres J. Nazzari",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AndresNazzari/budgetApp/issues"
-  },
-  "homepage": "https://github.com/AndresNazzari/budgetApp#readme",
-  "dependencies": {
-    "axios": "^0.27.2",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "express-validator": "^6.14.2",
-    "gravatar": "^1.8.2",
-    "jsonwebtoken": "^8.5.1",
-    "knex": "^2.1.0",
-    "moment": "^2.29.3",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.18",
-    "request": "^2.88.2"
-  }
+    "name": "budgetapp_server",
+    "version": "0.1.0",
+    "description": "CHALLENGE FULL STACK - JavaScript 🚀 for Alkemy, backend side.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "server": "nodemon ./server/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AndresNazzari/budgetApp.git"
+    },
+    "author": "Andres J. Nazzari",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/AndresNazzari/budgetApp/issues"
+    },
+    "homepage": "https://github.com/AndresNazzari/budgetApp#readme",
+    "dependencies": {
+        "axios": "^0.27.2",
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "express-validator": "^6.14.2",
+        "gravatar": "^1.8.2",
+        "jsonwebtoken": "^8.5.1",
+        "knex": "^2.1.0",
+        "moment": "^2.29.3",
+        "mysql": "^2.18.1",
+        "nodemon": "^2.0.18",
+        "request": "^2.88.2"
+    }
 }
