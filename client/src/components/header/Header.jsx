@@ -1,15 +1,14 @@
 import styles from './style/Header.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { logout, loadUserAction } from '../../../redux/actions/user.action';
-import { ReactComponent as ProfileIcon } from './assets/profile.svg';
+import { logout } from '../../redux/actions/user.action';
+
 import { ReactComponent as HomeIcon } from './assets/home1.svg';
 import { ReactComponent as IncomeIcon } from './assets/income.svg';
 import { ReactComponent as ExpenseIcon } from './assets/expense.svg';
 import { ReactComponent as OperationsIcon } from './assets/operations.svg';
 import { ReactComponent as ExitIcon } from './assets/exit.svg';
-import Home from '../../../views/home/Home';
 
 const Header = () => {
     const dispatch = useDispatch();
