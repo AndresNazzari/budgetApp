@@ -2,9 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+/*============================[Config]==========================*/
 dotenv.config({ path: `./.env` });
 const app = express();
-const PORT = process.env.PORT || 8080;
 
 const corsOptions = {
     origin: 'http://localhost:3000',
@@ -12,17 +12,19 @@ const corsOptions = {
     optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-/*============================[Database]==========================*/
 
+/*============================[Database]==========================*/
+await createDatabase();
+await createTables();
 /*============================[Routes]============================*/
 
 /*============================[Server]============================*/
+const PORT = process.env.PORT || 8080;
+
 //Serve static assters in production
 if (process.env.NODE_ENV === 'production') {
-    //Set Static folder
     app.use(express.static('client/build'));
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
