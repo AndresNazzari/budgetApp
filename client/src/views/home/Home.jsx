@@ -8,6 +8,8 @@ import Dashboard from '../../components/dashboard/Dashboard';
 import Spinner from '../../components/spinner/Spinner';
 import OperationList from '../../components/operationList/OperationList';
 import Alert from '../../components/alert/Alert';
+import styles from './style/Home.module.scss';
+
 const Home = () => {
     const dispatch = useDispatch();
     const fetchingStateUser = useSelector((store) => store.userReducer.fetchState);
@@ -53,7 +55,12 @@ const Home = () => {
             ) : (
                 <>
                     <Alert />
-                    <div>All time balance: {balance}</div>
+                    <h3
+                        className={
+                            balance < 0 ? `${styles.negativeBalance}` : `${styles.positiveBalance}`
+                        }>
+                        All time balance: $ {balance}
+                    </h3>
                     <div>
                         <h1>Last Operations</h1>
                         <OperationList list={opp} last10={true} />
