@@ -24,8 +24,6 @@ const OperationList = ({ list, last10 }) => {
         op.amount > 0 ? dispatch(removeIncomeAction(op)) : dispatch(removeExpenseAction(op));
     };
 
-    const editOperation = (op) => {};
-
     let listOp = [];
 
     for (let i = offset; i < offset + eventsPerPage; i++) {
@@ -92,35 +90,37 @@ const OperationList = ({ list, last10 }) => {
                         </thead>
                         {
                             <tbody>
-                                {listOp.map((op, index) => (
-                                    <tr key={index}>
-                                        <td className={`${style.infoHeader} ${style.info}`}>
-                                            {op.concept}
-                                        </td>
-                                        <td className={`${style.infoHeader} ${style.info}`}>
-                                            {op.amount < 0 && '-'}${Math.abs(op.amount)}
-                                        </td>
-                                        <td className={`${style.infoHeader} ${style.info}`}>
-                                            {<Moment format='DD/MM/YYYY'>{op.date}</Moment>}
-                                        </td>
-                                        <td className={style.eraseTd}>
-                                            <Link to='/operations' state={op}>
+                                {listOp
+                                    .slice(0)
+                                    .reverse()
+                                    .map((op, index) => (
+                                        <tr key={index}>
+                                            <td className={`${style.infoHeader} ${style.info}`}>
+                                                {op.concept}
+                                            </td>
+                                            <td className={`${style.infoHeader} ${style.info}`}>
+                                                {op.amount < 0 && '-'}${Math.abs(op.amount)}
+                                            </td>
+                                            <td className={`${style.infoHeader} ${style.info}`}>
+                                                {<Moment format='DD/MM/YYYY'>{op.date}</Moment>}
+                                            </td>
+                                            <td className={style.eraseTd}>
+                                                <Link to='/operations' state={op}>
+                                                    <img
+                                                        src={IconEdit}
+                                                        className={style.iconEdit}
+                                                        alt=''
+                                                    />
+                                                </Link>
                                                 <img
-                                                    src={IconEdit}
-                                                    className={style.iconEdit}
+                                                    src={IconDelete}
+                                                    className={style.iconDelete}
                                                     alt=''
-                                                    onClick={() => editOperation(op)}
+                                                    onClick={() => removeOperation(op)}
                                                 />
-                                            </Link>
-                                            <img
-                                                src={IconDelete}
-                                                className={style.iconDelete}
-                                                alt=''
-                                                onClick={() => removeOperation(op)}
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
+                                            </td>
+                                        </tr>
+                                    ))}
                             </tbody>
                         }
                     </table>
