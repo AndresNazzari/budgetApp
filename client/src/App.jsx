@@ -6,7 +6,7 @@ import setAuthToken from './util/setAuthToken';
 import { loadUserAction } from './redux/actions/user.action';
 import { setToken } from './redux/states/user.state';
 import Login from './views/login/Login';
-import Signup from './views/signup/Signup';
+import Signup from './views/signup/Signup.jsx';
 import Home from './views/home/Home';
 import NewOperation from './views/newOperation/NewOperation';
 import Operations from './views/operations/Operations';
