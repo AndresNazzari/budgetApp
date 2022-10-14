@@ -13,7 +13,7 @@ dotenv.config({ path: `./.env` });
 const app = express();
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
 };

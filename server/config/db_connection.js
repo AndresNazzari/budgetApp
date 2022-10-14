@@ -1,9 +1,9 @@
 export const configDb = {
     client: 'mysql',
     connection: {
-        host: 'localhost',
-        user: 'root',
-        password: '',
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.PASSWORD,
         charset: 'utf8',
     },
 };
