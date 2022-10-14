@@ -13,7 +13,7 @@ import { ExpenseRoute } from './routes/api/expense.route.js';
 const app = express();
 
 const corsOptions = {
-    origin: 'http://localhost',
+    origin: 'https://budgetapp-front.netlify.app/',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
 };
