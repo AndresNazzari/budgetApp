@@ -9,7 +9,6 @@ export const createTables = async () => {
 
     try {
         //crea tabla categories
-        console.log('testeando');
         let hasTable = await db.schema.hasTable('categories');
         if (!hasTable) {
             await db.schema.createTable('categories', (table) => {
