@@ -3,9 +3,7 @@ import { configDb } from './db_connection.js';
 
 export const createTables = async () => {
     const databaseName = process.env.DB_NAME || 'budget';
-
     configDb.connection.database = databaseName;
-    console.log(configDb.connection);
 
     const db = knex(configDb);
 

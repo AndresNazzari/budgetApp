@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /*============================[Database]==========================*/
-// await createDatabase();
+await createDatabase();
 await createTables();
 
 /*============================[Routes]============================*/
