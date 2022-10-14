@@ -4,11 +4,12 @@ import { configDb } from './db_connection.js';
 export const createTables = async () => {
     const databaseName = process.env.DB_NAME;
     configDb.connection.database = databaseName;
-    console.log(configDb.connection);
+
     const db = knex(configDb);
 
     try {
         //crea tabla categories
+        console.log(first);
         let hasTable = await db.schema.hasTable('categories');
         if (!hasTable) {
             await db.schema.createTable('categories', (table) => {
