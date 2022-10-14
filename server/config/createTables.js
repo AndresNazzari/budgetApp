@@ -6,6 +6,7 @@ export const createTables = async () => {
 
     configDb.connection.database = databaseName;
     console.log(configDb.connection);
+
     const db = knex(configDb);
 
     try {
