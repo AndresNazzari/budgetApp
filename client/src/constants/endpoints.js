@@ -1,4 +1,4 @@
-const URL = 'http://localhost:8080';
+const URL = 'https://budgetapp-production.up.railway.app/';
 
 export const Endpoints = {
     GET_USER: `${URL}/api/user`,
