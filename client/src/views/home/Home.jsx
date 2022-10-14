@@ -25,11 +25,11 @@ const Home = () => {
         dispatch(loadUserAction());
         dispatch(getAllIncomesAction(user_id));
         dispatch(getAllExpensesAction(user_id));
-    }, [user_id]);
+    }, [dispatch, user_id]);
 
     useEffect(() => {
         setBalance(calcBalance());
-    }, [balance, incomes, expenses]);
+    }, [balance, incomes, expenses, calcBalance]);
 
     const calcBalance = () => {
         return (
