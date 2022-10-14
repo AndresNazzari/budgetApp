@@ -29,7 +29,7 @@ const Home = () => {
 
     useEffect(() => {
         setBalance(calcBalance());
-    }, [balance, incomes, expenses, calcBalance]);
+    }, [balance, incomes, expenses]);
 
     const calcBalance = () => {
         return (
