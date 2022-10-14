@@ -3,7 +3,7 @@ import { configDb } from './db_connection.js';
 
 export const createDatabase = async () => {
     const db = knex(configDb);
-    const databaseName = process.env.DB_NAME;
+    const databaseName = process.env.DB_NAME || 'budget';
 
     try {
         // await db.raw(`DROP DATABASE ${databaseName}`);

@@ -1,5 +1,7 @@
+import * as dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
+console.log(process.env);
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import { createTables } from './config/createTables.js';
 import { createDatabase } from './config/createDatabase.js';
@@ -9,7 +11,6 @@ import { IncomeRoute } from './routes/api/income.route.js';
 import { ExpenseRoute } from './routes/api/expense.route.js';
 
 /*============================[Config]==========================*/
-dotenv.config({ path: `./.env` });
 const app = express();
 
 const corsOptions = {
