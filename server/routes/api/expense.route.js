@@ -1,12 +1,11 @@
 import express from 'express';
 import { check } from 'express-validator';
-import ExpenseController from '../../controllers/expense.controller.js';
 import auth from '../../middleware/auth.middleware.js';
 
-export class ExpenseRoute extends express.Router {
-    constructor() {
+export default class ExpenseRoute extends express.Router {
+    constructor({ expenseController }) {
         super();
-        this.expenseController = new ExpenseController();
+        this.expenseController = expenseController;
 
         //@route    POST api/expense
         //@desc     Add expense

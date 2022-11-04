@@ -6,13 +6,8 @@ import cors from 'cors';
 import { createTables } from './config/createTables.js';
 import { createDatabase } from './config/createDatabase.js';
 
-import { setup } from './di-setup.js';
+import { setup, container } from './di-setup.js';
 setup();
-
-import { UserRoute } from './routes/api/user.route.js';
-import { CategoryRoute } from './routes/api/category.route.js';
-import { IncomeRoute } from './routes/api/income.route.js';
-import { ExpenseRoute } from './routes/api/expense.route.js';
 
 /*============================[Config]==========================*/
 
@@ -32,10 +27,10 @@ await createDatabase();
 await createTables();
 
 /*============================[Routes]============================*/
-app.use('/api/user', new UserRoute());
-app.use('/api/category', new CategoryRoute());
-app.use('/api/income', new IncomeRoute());
-app.use('/api/expense', new ExpenseRoute());
+app.use('/api/user', container.resolve('userRoute'));
+app.use('/api/category', container.resolve('categoryRoute'));
+app.use('/api/income', container.resolve('incomeRoute'));
+app.use('/api/expense', container.resolve('expenseRoute'));
 
 /*============================[Server]============================*/
 const PORT = process.env.PORT || 3000;

@@ -1,14 +1,12 @@
 import express from 'express';
-import UserController from '../../controllers/user.controller.js';
 import { check } from 'express-validator';
 import auth from '../../middleware/auth.middleware.js';
-import { container } from '../../di-setup.js';
 
-export class UserRoute extends express.Router {
-    constructor() {
+export default class UserRoute extends express.Router {
+    constructor({ userController }) {
         super();
         // this.userController = new UserController();
-        this.userController = container.resolve('userController');
+        this.userController = userController;
 
         //@route    POST api/user
         //@desc     Register User

@@ -1,12 +1,10 @@
 import express from 'express';
-import CategoryController from '../../controllers/category.controller.js';
 import { check } from 'express-validator';
 import auth from '../../middleware/auth.middleware.js';
-
-export class CategoryRoute extends express.Router {
-    constructor() {
+export default class CategoryRoute extends express.Router {
+    constructor({ categoryController }) {
         super();
-        this.categoryController = new CategoryController();
+        this.categoryController = categoryController;
 
         //@route    POST api/category
         //@desc     Create category

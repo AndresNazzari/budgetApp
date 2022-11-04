@@ -1,12 +1,11 @@
 import express from 'express';
 import { check } from 'express-validator';
-import IncomeController from '../../controllers/income.controller.js';
 import auth from '../../middleware/auth.middleware.js';
 
-export class IncomeRoute extends express.Router {
-    constructor() {
+export default class IncomeRoute extends express.Router {
+    constructor({ incomeController }) {
         super();
-        this.incomeController = new IncomeController();
+        this.incomeController = incomeController;
 
         //@route    POST api/Income
         //@desc     Add Income
