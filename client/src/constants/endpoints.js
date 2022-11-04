@@ -1,4 +1,5 @@
-const URL = 'https://budgetapp-production.up.railway.app';
+// const URL = 'https://budgetapp-production.up.railway.app';
+const URL = 'http://localhost:3000';
 
 export const Endpoints = {
     GET_USER: `${URL}/api/user`,

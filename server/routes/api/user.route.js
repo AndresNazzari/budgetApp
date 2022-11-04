@@ -19,6 +19,9 @@ export class UserRoute extends express.Router {
                 check('password', 'Please enter a password with 6 or more characters').isLength({
                     min: 6,
                 }),
+                check('password2', 'Please enter a password with 6 or more characters').isLength({
+                    min: 6,
+                }),
             ],
             this.userController.createUser
         );

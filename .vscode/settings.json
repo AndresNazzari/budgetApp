@@ -1,8 +1,13 @@
 {
-  "workbench.colorCustomizations": {
-    "tab.activeBorderTop": "#ff0a0a",
-    "activityBar.background": "#561139",
-    "titleBar.activeBackground": "#79174F",
-    "titleBar.activeForeground": "#FEFCFD"
-  }
+    "workbench.colorCustomizations": {
+        "tab.activeBorderTop": "#ff0a0a",
+        "activityBar.background": "#561139",
+        "titleBar.activeBackground": "#79174F",
+        "titleBar.activeForeground": "#FEFCFD"
+    },
+    "eslint.options": { "overrideConfigFile": ".eslintrc.json" },
+    "eslint.validate": ["javascript", "javascriptreact"],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
 }

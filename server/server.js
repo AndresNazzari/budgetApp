@@ -14,7 +14,7 @@ import { ExpenseRoute } from './routes/api/expense.route.js';
 const app = express();
 
 const corsOptions = {
-    origin: 'https://budgetapp-front.netlify.app',
+    origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
 };
@@ -33,7 +33,7 @@ app.use('/api/income', new IncomeRoute());
 app.use('/api/expense', new ExpenseRoute());
 
 /*============================[Server]============================*/
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 //Serve static assters in production
 if (process.env.NODE_ENV === 'production') {

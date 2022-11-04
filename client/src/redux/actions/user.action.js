@@ -52,7 +52,7 @@ export const logout = () => async (dispatch, getState) => {
 };
 
 export const signup =
-    ({ name, email, password }) =>
+    ({ name, email, password, password2 }) =>
     async (dispatch, getState) => {
         dispatch(requestLogin());
         try {
@@ -61,7 +61,7 @@ export const signup =
                     'Content-Type': 'application/json',
                 },
             };
-            const body = JSON.stringify({ name, email, password });
+            const body = JSON.stringify({ name, email, password, password2 });
             const res = await axios.post(Endpoints.POST_SIGNUP_USER, body, config);
             dispatch(requestLoginSuccess(res.data));
         } catch (error) {

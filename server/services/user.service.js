@@ -12,6 +12,7 @@ export default class UserService {
     async userExists(email) {
         return await this.knex.select('*').from('users').where('email', email);
     }
+
     async comparePassword(password, hash) {
         return await bcrypt.compare(password, hash);
     }
@@ -37,8 +38,9 @@ export default class UserService {
             expiresIn: 60 /*seconds*/ * 60 * 24,
         });
     }
-    async getGravatar(email) {
-        return await gravatar.url(email, {
+
+    getGravatar(email) {
+        return gravatar.url(email, {
             s: '200',
             r: 'pg',
             d: 'mm',

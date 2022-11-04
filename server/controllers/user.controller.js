@@ -16,36 +16,26 @@ export default class UserController {
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const { name, email, password } = req.body;
+        const { name, email, password, password2 } = req.body;
 
         try {
             //check if user exists
             const queryResult = await this.userService.userExists(email);
             if (queryResult.length > 0) {
-                return res
-                    .status(400)
-                    .json({ errors: [{ msg: 'Email already registered' }] });
+                return res.status(400).json({ errors: [{ msg: 'Email already registered' }] });
             }
-
+            //check if password and password2 are the same
+            if (password !== password2) {
+                return res.status(400).json({ errors: [{ msg: 'Passwords do not match' }] });
+            }
             //Encrypt password
-            const passwordEncrypted = await this.userService.encryptPassword(
-                password
-            );
-
+            const passwordEncrypted = await this.userService.encryptPassword(password);
             //Get users gravatar
             const avatar = await this.userService.getGravatar(email);
-
             //Add user to database
-            await this.userService.addUser(
-                name,
-                email,
-                avatar,
-                passwordEncrypted
-            );
-
+            await this.userService.addUser(name, email, avatar, passwordEncrypted);
             //Return jsonwebtoken
             const token = this.userService.generateToken(email);
-
             res.status(200).json({ token });
         } catch (error) {
             console.error(error.message);
@@ -65,9 +55,7 @@ export default class UserController {
             //check if user exists
             const queryResult = await this.userService.userExists(email);
             if (queryResult.length == 0) {
-                return res
-                    .status(401)
-                    .json({ errors: [{ msg: 'Invalid Credentials' }] });
+                return res.status(401).json({ errors: [{ msg: 'Invalid Credentials' }] });
             }
 
             //check if password is correct
@@ -76,9 +64,7 @@ export default class UserController {
                 queryResult[0].password
             );
             if (!isMatch) {
-                return res
-                    .status(401)
-                    .json({ errors: [{ msg: 'Invalid Credentials' }] });
+                return res.status(401).json({ errors: [{ msg: 'Invalid Credentials' }] });
             }
             //Return jsonwebtoken
 
