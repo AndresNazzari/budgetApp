@@ -1,9 +1,8 @@
-import knex from 'knex';
-import { configDb } from '../config/db_connection.js';
+import { db } from '../config/db_connection.js';
 
 export default class ExpenseService {
     constructor() {
-        this.knex = knex(configDb);
+        this.knex = db;
     }
 
     async addExpense(concept, amount, date, category_id, user_id) {

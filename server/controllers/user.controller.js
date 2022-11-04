@@ -1,9 +1,9 @@
-import UserService from '../services/user.service.js';
 import { validationResult } from 'express-validator';
 
 export default class UserController {
-    constructor() {
-        this.userService = new UserService();
+    constructor({ userService }) {
+        // this.userService = new UserService();
+        this.userService = userService;
 
         this.createUser = this.createUser.bind(this);
         this.loginUser = this.loginUser.bind(this);

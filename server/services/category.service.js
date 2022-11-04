@@ -1,16 +1,12 @@
-import knex from 'knex';
-import { configDb } from '../config/db_connection.js';
+import { db } from '../config/db_connection.js';
 
 export default class CategoryService {
     constructor() {
-        this.knex = knex(configDb);
+        this.knex = db;
     }
 
     async categoryExists(categoryId) {
-        return await this.knex
-            .select('*')
-            .from('categories')
-            .where('category_id', categoryId);
+        return await this.knex.select('*').from('categories').where('category_id', categoryId);
     }
 
     async addCategory(categoryName) {

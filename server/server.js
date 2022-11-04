@@ -5,12 +5,17 @@ import express from 'express';
 import cors from 'cors';
 import { createTables } from './config/createTables.js';
 import { createDatabase } from './config/createDatabase.js';
+
+import { setup } from './di-setup.js';
+setup();
+
 import { UserRoute } from './routes/api/user.route.js';
 import { CategoryRoute } from './routes/api/category.route.js';
 import { IncomeRoute } from './routes/api/income.route.js';
 import { ExpenseRoute } from './routes/api/expense.route.js';
 
 /*============================[Config]==========================*/
+
 const app = express();
 
 const corsOptions = {

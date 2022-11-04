@@ -1,16 +1,14 @@
-import knex from 'knex';
-import { configDb } from '../config/db_connection.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import gravatar from 'gravatar';
 
 export default class UserService {
-    constructor() {
-        this.knex = knex(configDb);
+    constructor({ db }) {
+        this.db = db;
     }
 
     async userExists(email) {
-        return await this.knex.select('*').from('users').where('email', email);
+        return await this.db.select('*').from('users').where('email', email);
     }
 
     async comparePassword(password, hash) {
@@ -23,7 +21,7 @@ export default class UserService {
     }
 
     async addUser(name, email, avatar = '', password) {
-        return await this.knex('users').insert({
+        return await this.db('users').insert({
             name,
             email,
             avatar,
@@ -48,7 +46,7 @@ export default class UserService {
     }
 
     async getUser(email) {
-        return await this.knex
+        return await this.db
             .select('user_id', 'name', 'email', 'avatar')
             .from('users')
             .where('email', email);

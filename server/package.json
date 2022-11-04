@@ -20,6 +20,7 @@
     },
     "homepage": "https://github.com/AndresNazzari/budgetApp#readme",
     "dependencies": {
+        "awilix": "^8.0.0",
         "axios": "^0.27.2",
         "bcryptjs": "^2.4.3",
         "chai": "^4.3.6",
