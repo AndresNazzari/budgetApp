@@ -45,5 +45,10 @@ export default class UserRoute extends express.Router {
         //@desc     Get user by email
         //@access   Public
         this.get('/', auth, this.userController.getUser);
+
+        //@route    DELETE api/user/
+        //@desc     Delete user by email
+        //@access   Public
+        this.delete('/:id', auth, this.userController.deleteUser);
     }
 }

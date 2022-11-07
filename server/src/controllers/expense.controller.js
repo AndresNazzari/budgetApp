@@ -2,8 +2,8 @@ import ExpenseService from '../services/expense.service.js';
 import { validationResult } from 'express-validator';
 
 export default class ExpenseController {
-    constructor() {
-        this.expenseService = new ExpenseService();
+    constructor({ expenseService }) {
+        this.expenseService = expenseService;
 
         this.addExpense = this.addExpense.bind(this);
         this.getExpenses = this.getExpenses.bind(this);
@@ -56,13 +56,7 @@ export default class ExpenseController {
         const { concept, amount, date, category_id } = req.body;
         const { expense_id } = req.params;
         try {
-            await this.expenseService.updateExpense(
-                expense_id,
-                concept,
-                amount,
-                date,
-                category_id
-            );
+            await this.expenseService.updateExpense(expense_id, concept, amount, date, category_id);
 
             res.status(200).json({ msg: 'Expense updated' });
         } catch (error) {

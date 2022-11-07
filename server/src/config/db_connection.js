@@ -23,10 +23,3 @@ export const db = knex({
         charset: 'utf8',
     },
 });
-
-export const dbMemory = knex({
-    client: 'sqlite3',
-    connection: {
-        filename: ':memory:',
-    },
-});

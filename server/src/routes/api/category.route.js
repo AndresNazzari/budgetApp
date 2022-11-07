@@ -20,15 +20,5 @@ export default class CategoryRoute extends express.Router {
         //@desc     Get all categories
         //@access   Private
         this.get('/', auth, this.categoryController.getCategories);
-
-        //@route    DELETE api/category
-        //@desc     Create category
-        //@access   Private
-        /* this.delete(
-            '/',
-            auth,
-            [check('name', 'Name is Required').not().isEmpty()],
-            this.categoryController.removeCategory
-        ); */
     }
 }

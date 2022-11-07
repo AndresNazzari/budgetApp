@@ -1,5 +1,5 @@
 import awilix from 'awilix';
-import { db } from './config/db_connection.js';
+import { db } from './src/config/db_connection.js';
 import UserRoute from './routes/api/user.route.js';
 import CategoryRoute from './routes/api/category.route.js';
 import ExpenseRoute from './routes/api/expense.route.js';

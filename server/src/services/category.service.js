@@ -1,7 +1,5 @@
-import { db } from '../config/db_connection.js';
-
 export default class CategoryService {
-    constructor() {
+    constructor({ db }) {
         this.knex = db;
     }
 

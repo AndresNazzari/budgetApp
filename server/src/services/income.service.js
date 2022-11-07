@@ -1,7 +1,5 @@
-import { db } from '../config/db_connection.js';
-
 export default class UserService {
-    constructor() {
+    constructor({ db }) {
         this.knex = db;
     }
 
@@ -30,6 +28,7 @@ export default class UserService {
             })
             .where({ income_id });
     }
+
     async removeIncome(income_id) {
         return await this.knex('income').where({ income_id }).del();
     }

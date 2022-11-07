@@ -2,8 +2,8 @@ import CategoryService from '../services/category.service.js';
 import { validationResult } from 'express-validator';
 
 export default class CategoryController {
-    constructor() {
-        this.categoryService = new CategoryService();
+    constructor({ categoryService }) {
+        this.categoryService = categoryService;
 
         this.createCategory = this.createCategory.bind(this);
         this.removeCategory = this.removeCategory.bind(this);
@@ -47,14 +47,10 @@ export default class CategoryController {
         const { category_id } = req.body;
         try {
             //check if category exists
-            const queryResult = await this.categoryService.categoryExists(
-                category_id
-            );
+            const queryResult = await this.categoryService.categoryExists(category_id);
 
             if (queryResult.length <= 0) {
-                return res
-                    .status(400)
-                    .json({ errors: [{ msg: "Category didn't exists" }] });
+                return res.status(400).json({ errors: [{ msg: "Category didn't exists" }] });
             }
             await this.categoryService.removeCategory(category_id);
             res.status(200).json({ msg: 'Category deleted' });

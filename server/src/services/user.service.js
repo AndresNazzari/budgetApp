@@ -32,7 +32,7 @@ export default class UserService {
 
     generateToken(email) {
         const payload = { user: { id: email } };
-        return jwt.sign(payload, process.env.JWT_SECRET, {
+        return jwt.sign(payload, process.env.JWT_SECRET || 'secretToken', {
             expiresIn: 60 /*seconds*/ * 60 * 24,
         });
     }
@@ -47,8 +47,19 @@ export default class UserService {
 
     async getUser(email) {
         return await this.db
-            .select('user_id', 'name', 'email', 'avatar')
+            .select('user_id', 'name', 'email', 'avatar', 'password')
             .from('users')
             .where('email', email);
+    }
+
+    async getUserById(id) {
+        return await this.db
+            .select('user_id', 'name', 'email', 'avatar', 'password')
+            .from('users')
+            .where('user_id', id);
+    }
+
+    async deleteUserById(id) {
+        return await this.db('users').where('user_id', id).del();
     }
 }

@@ -3,11 +3,13 @@ import { validationResult } from 'express-validator';
 export default class UserController {
     constructor({ userService }) {
         // this.userService = new UserService();
+        // console.log(userService);
         this.userService = userService;
 
         this.createUser = this.createUser.bind(this);
         this.loginUser = this.loginUser.bind(this);
         this.getUser = this.getUser.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     async createUser(req, res) {
@@ -81,6 +83,18 @@ export default class UserController {
             const email = req.user.id;
             const user = await this.userService.getUser(email);
             res.status(200).json({ user: user[0] });
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
+    }
+    async deleteUser(req, res) {
+        try {
+            const { id } = req.params;
+            const user = await this.userService.getUserById(id);
+            await this.userService.deleteUserById(id);
+
+            res.status(200).json({ user });
         } catch (error) {
             console.error(error.message);
             res.status(500).send('Server Error');

@@ -2,8 +2,8 @@ import IncomeService from '../services/income.service.js';
 import { validationResult } from 'express-validator';
 
 export default class IncomeController {
-    constructor() {
-        this.incomeService = new IncomeService();
+    constructor({ incomeService }) {
+        this.incomeService = incomeService;
 
         this.addIncome = this.addIncome.bind(this);
         this.getIncomes = this.getIncomes.bind(this);
@@ -56,13 +56,7 @@ export default class IncomeController {
         const { concept, amount, date, category_id } = req.body;
         const { income_id } = req.params;
         try {
-            await this.incomeService.updateIncome(
-                income_id,
-                concept,
-                amount,
-                date,
-                category_id
-            );
+            await this.incomeService.updateIncome(income_id, concept, amount, date, category_id);
 
             res.status(200).json({ msg: 'Income updated' });
         } catch (error) {

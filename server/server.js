@@ -3,13 +3,13 @@ dotenv.config({ path: './.env' });
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
-import { createTables } from './config/createTables.js';
-import { createDatabase } from './config/createDatabase.js';
+import { createTables } from './src/config/createTables.js';
+import { createDatabase } from './src/config/createDatabase.js';
 
 import { setup, container } from './di-setup.js';
-setup();
 
 /*============================[Config]==========================*/
+setup();
 
 const app = express();
 
