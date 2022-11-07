@@ -16,8 +16,6 @@ export const dbMemory = knex({
 
 export const createDb = async (db) => {
     try {
-        //crea tabla categories
-
         let hasTable = await db.schema.hasTable('categories');
         if (!hasTable) {
             await db.schema.createTable('categories', (table) => {
@@ -25,9 +23,6 @@ export const createDb = async (db) => {
                 table.string('name');
                 table.string('created_at');
             });
-            // console.log(`📄 Table created: ${'categories'}`);
-
-            ///temporal hasta que se agrege seccion de crear categorias
             const categories = [
                 { name: 'Work', created_at: new Date() },
                 { name: 'Dinner', created_at: new Date() },
@@ -39,11 +34,7 @@ export const createDb = async (db) => {
                 { name: 'Saving', created_at: new Date() },
             ];
             await db('categories').insert(categories);
-            // console.log(`📄 categories created`);
-        } else {
-            // console.log(`📄 ${'categories'} table already exists`);
         }
-        // //crea tabla users
         hasTable = await db.schema.hasTable('users');
         if (!hasTable) {
             await db.schema.createTable('users', (table) => {
@@ -54,11 +45,7 @@ export const createDb = async (db) => {
                 table.string('password');
                 table.string('created_at');
             });
-            // console.log(`📄 Table created: ${'users'}`);
-        } else {
-            // console.log(`📄 ${'users'} table already exists`);
         }
-        //crea tabla income
         hasTable = await db.schema.hasTable('income');
         if (!hasTable) {
             await db.schema.createTable('income', (table) => {
@@ -79,11 +66,7 @@ export const createDb = async (db) => {
                     .references('user_id')
                     .inTable('users');
             });
-            // console.log(`📄 Table created: ${'income'}`);
-        } else {
-            // console.log(`📄 ${'income'} table already exists`);
         }
-        //crea tabla expenses
         hasTable = await db.schema.hasTable('expense');
         if (!hasTable) {
             await db.schema.createTable('expense', (table) => {
@@ -104,14 +87,7 @@ export const createDb = async (db) => {
                     .references('user_id')
                     .inTable('users');
             });
-            // console.log(`📄 Table created: ${'expense'}`);
-        } else {
-            // console.log(`📄 ${'expense'} table already exists`);
         }
-
-        // await db.destroy();
-
-        // console.log(`🗃️ DB in  Memory created`);
     } catch (error) {
         console.log(error);
     }
