@@ -17,23 +17,4 @@ export default class CategoryService {
     async getCategories() {
         return await this.knex('categories').select('*');
     }
-    async removeCategory(categoryId) {
-        /*  const result = await this.knex
-            .from('categories')
-            .leftJoin('income', 'categories.category_id', 'income.category_id')
-            .where('categories.category_id', categoryId);
-
-        const result2 = await this.knex
-            .from('categories')
-            .leftJoin(
-                'expense',
-                'categories.category_id',
-                'expense.category_id'
-            )
-            .where('categories.category_id', categoryId);
-
-        console.log(result);
-        console.log(result2);
-        */
-    }
 }
