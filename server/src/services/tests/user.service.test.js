@@ -1,11 +1,19 @@
 import { expect } from 'chai';
 import UserService from '../user.service.js';
-import { dbMemory, createDb } from '../../utils/test-utils.js';
 import knex from 'knex';
+import { dbMemoryConfig } from '../../utils/test-utils.js';
+import { createTables } from '../../config/createTables.js';
 
 describe('User service test', () => {
+    let dbMemory;
+
     before(async () => {
-        await createDb(dbMemory);
+        dbMemory = knex(dbMemoryConfig);
+        await createTables(dbMemory);
+    });
+
+    after(async () => {
+        await dbMemory.destroy();
     });
 
     it('Should encrypt password', async () => {
@@ -13,6 +21,10 @@ describe('User service test', () => {
         const password = '1234567890';
         const hash = await userService.encryptPassword(password);
         expect(hash).to.be.a('string').to.have.lengthOf(60).not.equal(password);
+    });
+
+    after(async () => {
+        await dbMemory.destroy();
     });
 
     it('Should compare password and encrypted password', async () => {

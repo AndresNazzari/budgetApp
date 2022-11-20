@@ -1,16 +1,24 @@
 import { expect } from 'chai';
 import ExpenseService from '../expense.service.js';
 import UserService from '../user.service.js';
-import { dbMemory, createDb } from '../../utils/test-utils.js';
+import knex from 'knex';
+import { dbMemoryConfig } from '../../utils/test-utils.js';
+import { createTables } from '../../config/createTables.js';
 
 describe('Expense service test', () => {
     let testUserId;
+    let dbMemory;
 
     before(async () => {
-        await createDb(dbMemory);
+        dbMemory = knex(dbMemoryConfig);
+        await createTables(dbMemory);
         const userService = new UserService({ db: dbMemory });
         testUserId = await userService.addUser('Test Name', 'test9@email.com', '', 1234567890);
         testUserId = testUserId[0];
+    });
+
+    after(async () => {
+        await dbMemory.destroy();
     });
 
     it('Should Add expense', async () => {

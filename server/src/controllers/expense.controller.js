@@ -1,10 +1,7 @@
-import ExpenseService from '../services/expense.service.js';
-import { validationResult } from 'express-validator';
-
 export default class ExpenseController {
-    constructor({ expenseService }) {
+    constructor({ expenseService, validationResult }) {
         this.expenseService = expenseService;
-
+        this.validationResult = validationResult;
         this.addExpense = this.addExpense.bind(this);
         this.getExpenses = this.getExpenses.bind(this);
         this.updateExpense = this.updateExpense.bind(this);
@@ -13,7 +10,7 @@ export default class ExpenseController {
 
     async addExpense(req, res) {
         //check if errors in validation
-        const errors = validationResult(req);
+        const errors = this.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -28,10 +25,9 @@ export default class ExpenseController {
                 user_id
             );
 
-            res.status(200).json({ msg: 'Expense created', newExpense });
+            res.status(201).json({ msg: 'Expense created', newExpense });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
@@ -41,14 +37,13 @@ export default class ExpenseController {
             const expenses = await this.expenseService.getExpenses(user_id);
             res.status(200).json({ expenses });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
     async updateExpense(req, res) {
         //check if errors in validation
-        const errors = validationResult(req);
+        const errors = this.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -60,8 +55,7 @@ export default class ExpenseController {
 
             res.status(200).json({ msg: 'Expense updated' });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
@@ -73,8 +67,7 @@ export default class ExpenseController {
 
             res.status(200).json({ msg: 'Expense removed' });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 }

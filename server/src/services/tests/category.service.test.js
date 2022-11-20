@@ -1,10 +1,19 @@
 import { expect } from 'chai';
 import CategoryService from '../category.service.js';
-import { dbMemory, createDb } from '../../utils/test-utils.js';
+import knex from 'knex';
+import { dbMemoryConfig } from '../../utils/test-utils.js';
+import { createTables } from '../../config/createTables.js';
 
 describe('Category service test', () => {
+    let dbMemory;
+
     before(async () => {
-        await createDb(dbMemory);
+        dbMemory = knex(dbMemoryConfig);
+        await createTables(dbMemory);
+    });
+
+    after(async () => {
+        await dbMemory.destroy();
     });
 
     it('Should add category', async () => {

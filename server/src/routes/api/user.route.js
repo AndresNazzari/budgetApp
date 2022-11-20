@@ -35,7 +35,7 @@ export default class UserRoute extends express.Router {
                 check('email', 'Please include a valid email.').isEmail(),
                 check('password', 'Please enter a password.').exists(),
                 check('password', 'Please enter a valid password.').isLength({
-                    min: 3,
+                    min: 6,
                 }),
             ],
             this.userController.loginUser

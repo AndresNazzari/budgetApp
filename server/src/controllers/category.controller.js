@@ -1,18 +1,16 @@
-import CategoryService from '../services/category.service.js';
-import { validationResult } from 'express-validator';
-
 export default class CategoryController {
-    constructor({ categoryService }) {
+    constructor({ categoryService, validationResult }) {
         this.categoryService = categoryService;
+        this.validationResult = validationResult;
 
         this.createCategory = this.createCategory.bind(this);
-        this.removeCategory = this.removeCategory.bind(this);
         this.getCategories = this.getCategories.bind(this);
+        // this.removeCategory = this.removeCategory.bind(this);
     }
 
     async createCategory(req, res) {
         //check if errors in validation
-        const errors = validationResult(req);
+        const errors = this.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -23,8 +21,7 @@ export default class CategoryController {
             await this.categoryService.addCategory(name);
             res.status(200).json({ msg: 'Category created' });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
@@ -33,30 +30,29 @@ export default class CategoryController {
             const categories = await this.categoryService.getCategories();
             res.status(200).json({ categories });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
-    async removeCategory(req, res) {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+    //Not implemented yet
+    // async removeCategory(req, res) {
+    //     const errors = this.validationResult(req);
+    //     if (!errors.isEmpty()) {
+    //         return res.status(400).json({ errors: errors.array() });
+    //     }
 
-        const { category_id } = req.body;
-        try {
-            //check if category exists
-            const queryResult = await this.categoryService.categoryExists(category_id);
+    //     const { category_id } = req.body;
+    //     try {
+    //         //check if category exists
+    //         const queryResult = await this.categoryService.categoryExists(category_id);
 
-            if (queryResult.length <= 0) {
-                return res.status(400).json({ errors: [{ msg: "Category didn't exists" }] });
-            }
-            await this.categoryService.removeCategory(category_id);
-            res.status(200).json({ msg: 'Category deleted' });
-        } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
-        }
-    }
+    //         if (queryResult.length <= 0) {
+    //             return res.status(400).json({ errors: [{ msg: "Category didn't exists" }] });
+    //         }
+    //         await this.categoryService.removeCategory(category_id);
+    //         res.status(200).json({ msg: 'Category deleted' });
+    //     } catch (error) {
+    //         res.status(500).send('Server Error');
+    //     }
+    // }
 }

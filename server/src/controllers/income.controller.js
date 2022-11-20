@@ -1,9 +1,7 @@
-import IncomeService from '../services/income.service.js';
-import { validationResult } from 'express-validator';
-
 export default class IncomeController {
-    constructor({ incomeService }) {
+    constructor({ incomeService, validationResult }) {
         this.incomeService = incomeService;
+        this.validationResult = validationResult;
 
         this.addIncome = this.addIncome.bind(this);
         this.getIncomes = this.getIncomes.bind(this);
@@ -13,7 +11,7 @@ export default class IncomeController {
 
     async addIncome(req, res) {
         //check if errors in validation
-        const errors = validationResult(req);
+        const errors = this.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -28,10 +26,9 @@ export default class IncomeController {
                 user_id
             );
 
-            res.status(200).json({ msg: 'Income created', newIncome });
+            res.status(201).json({ msg: 'Income created', newIncome });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
@@ -41,14 +38,13 @@ export default class IncomeController {
             const incomes = await this.incomeService.getIncomes(user_id);
             res.status(200).json({ incomes });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
     async updateIncome(req, res) {
         //check if errors in validation
-        const errors = validationResult(req);
+        const errors = this.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -60,8 +56,7 @@ export default class IncomeController {
 
             res.status(200).json({ msg: 'Income updated' });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
@@ -72,8 +67,7 @@ export default class IncomeController {
             await this.incomeService.removeIncome(income_id);
             res.status(200).json({ msg: 'Income removed' });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 }

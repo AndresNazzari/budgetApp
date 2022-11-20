@@ -1,10 +1,7 @@
-import { validationResult } from 'express-validator';
-
 export default class UserController {
-    constructor({ userService }) {
-        // this.userService = new UserService();
-        // console.log(userService);
+    constructor({ userService, validationResult }) {
         this.userService = userService;
+        this.validationResult = validationResult;
 
         this.createUser = this.createUser.bind(this);
         this.loginUser = this.loginUser.bind(this);
@@ -14,7 +11,7 @@ export default class UserController {
 
     async createUser(req, res) {
         //check if errors in validation
-        const errors = validationResult(req);
+        const errors = this.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -40,14 +37,13 @@ export default class UserController {
             const token = this.userService.generateToken(email);
             res.status(200).json({ token });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
     async loginUser(req, res) {
         //check if errors in validation
-        const errors = validationResult(req);
+        const errors = this.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -73,8 +69,7 @@ export default class UserController {
             const token = this.userService.generateToken(queryResult[0].email);
             res.status(200).json({ token });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 
@@ -84,10 +79,10 @@ export default class UserController {
             const user = await this.userService.getUser(email);
             res.status(200).json({ user: user[0] });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
+
     async deleteUser(req, res) {
         try {
             const { id } = req.params;
@@ -96,8 +91,7 @@ export default class UserController {
 
             res.status(200).json({ user });
         } catch (error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ errors: [{ msg: `Server error, ${error.message}` }] });
         }
     }
 }

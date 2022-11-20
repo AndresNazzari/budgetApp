@@ -1,3 +1,7 @@
+# se debe crear la base de datos budget manualmente
+
+# para testear se debe poner NODE_ENV=test
+
 # CHALLENGE FULL STACK - JavaScript 🚀
 
 ## Objetivo
