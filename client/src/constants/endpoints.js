@@ -1,4 +1,6 @@
-const URL = 'https://budgetapp-production.up.railway.app';
+// const URL = 'https://budgetapp-production.up.railway.app';
+const URL = 'https://budget-app-five-brown.vercel.app';
+// const URL = 'https://localhost';
 
 export const Endpoints = {
     GET_USER: `${URL}/api/user`,
